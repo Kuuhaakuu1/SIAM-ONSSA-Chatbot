@@ -12,20 +12,20 @@ from llama_index.core  import (
 
 path = "data"
 
-# Side bar contents
-with st.sidebar:
-    st.title('المساعد الذكي للقطب الرقمي')
-    st.markdown('''
-    ## :معلومات عنا
-    هذا التطبيق هو تواصل مع المساعد الذكي للقطب الرقمي.\n \n  تم بناؤه باستخدام
-    - [Streamlit](https://streamlit.io/)
-    - [OpenAI](https://platform.openai.com/docs/models) LLM Model
-    - [Pôle Digital](https://www.poledigital.ma/)
-    ''')
-    add_vertical_space(5)
-    st.write('تم إنشاؤه من قبل فريق الذكاء الاصطناعي للقطب الرقمي')
-    st.image("./assets/logo-large-pole-digital-light.png")
-st.title('إكتشف المساﻋﺪات الماﻟﻴﺔ ﻟﻠﺪوﻟﺔ ﻟﺘﺸﺠﻴﻊ اﻻﺳﺘﺜﻤﺎرات في اﻟﻘﻄﺎع اﻟﻔﻼﺣﻲ')
+# # Side bar contents
+# with st.sidebar:
+#     st.title('المساعد الذكي للقطب الرقمي')
+#     st.markdown('''
+#     ## :معلومات عنا
+#     هذا التطبيق هو تواصل مع المساعد الذكي للقطب الرقمي.\n \n  تم بناؤه باستخدام
+#     - [Streamlit](https://streamlit.io/)
+#     - [OpenAI](https://platform.openai.com/docs/models) LLM Model
+#     - [Pôle Digital](https://www.poledigital.ma/)
+#     ''')
+#     add_vertical_space(5)
+#     st.write('تم إنشاؤه من قبل فريق الذكاء الاصطناعي للقطب الرقمي')
+#     st.image("./assets/logo-large-pole-digital-light.png")
+# st.title('إكتشف المساﻋﺪات الماﻟﻴﺔ ﻟﻠﺪوﻟﺔ ﻟﺘﺸﺠﻴﻊ اﻻﺳﺘﺜﻤﺎرات في اﻟﻘﻄﺎع اﻟﻔﻼﺣﻲ')
 
 
 # if "messages" not in st.session_state.keys(): # Initialize the chat messages history
