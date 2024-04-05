@@ -28,49 +28,53 @@ with st.sidebar:
 st.title('إكتشف المساﻋﺪات الماﻟﻴﺔ ﻟﻠﺪوﻟﺔ ﻟﺘﺸﺠﻴﻊ اﻻﺳﺘﺜﻤﺎرات في اﻟﻘﻄﺎع اﻟﻔﻼﺣﻲ')
 
 
-if "messages" not in st.session_state.keys(): # Initialize the chat messages history
-    st.session_state.messages = [
-        {"role": "assistant",  "content":"تعرف على المساعدات المالية الحكومية لتشجيع الاستثمار الزراعي "}
-    ]
+# if "messages" not in st.session_state.keys(): # Initialize the chat messages history
+#     st.session_state.messages = [
+#         {"role": "assistant",  "content":"تعرف على المساعدات المالية الحكومية لتشجيع الاستثمار الزراعي "}
+#     ]
 
 
 
-@st.cache_resource(show_spinner=False)
-def load_index():
-    with st.spinner(text="جاري تحميل المستندات انتظر قليلاً! قد يستغرق هذا الأمر من 1 إلى 2 دقيقة."):
-        if not os.path.exists("./storage"):
-            # load the documents and create the index
-            documents = SimpleDirectoryReader(path).load_data()
-            index = VectorStoreIndex.from_documents(documents)
-            # store it for later
-            index.storage_context.persist()
-        else:
-            # load the existing index
-            storage_context = StorageContext.from_defaults(persist_dir="./storage")
-            index = load_index_from_storage(storage_context)
-        return index
-index = load_index()
+# @st.cache_resource(show_spinner=False)
+# def load_index():
+#     with st.spinner(text="جاري تحميل المستندات انتظر قليلاً! قد يستغرق هذا الأمر من 1 إلى 2 دقيقة."):
+#         if not os.path.exists("./storage"):
+#             # load the documents and create the index
+#             documents = SimpleDirectoryReader(path).load_data()
+#             index = VectorStoreIndex.from_documents(documents)
+#             # store it for later
+#             index.storage_context.persist()
+#         else:
+#             # load the existing index
+#             storage_context = StorageContext.from_defaults(persist_dir="./storage")
+#             index = load_index_from_storage(storage_context)
+#         return index
+# index = load_index()
 
 
-if "chat_engine" not in st.session_state.keys(): # Initialize the chat engine
-        st.session_state.chat_engine = index.as_chat_engine(chat_mode="context", verbose=True, system_prompt=("If you need aditional information, ask for it"))
-# either way we can now query the index
-# query_engine = index.as_query_engine()
+# if "chat_engine" not in st.session_state.keys(): # Initialize the chat engine
+#         st.session_state.chat_engine = index.as_chat_engine(chat_mode="context", verbose=True, system_prompt=("If you need aditional information, ask for it"))
+# # either way we can now query the index
+# # query_engine = index.as_query_engine()
 
-if prompt := st.chat_input(" أدخل سؤالك هنا"): # Prompt for user input and save to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
+# if prompt := st.chat_input(" أدخل سؤالك هنا"): # Prompt for user input and save to chat history
+#     st.session_state.messages.append({"role": "user", "content": prompt})
 
-for message in st.session_state.messages: # Display the prior chat messages
-    with st.chat_message(message["role"]):
-        st.write(message["content"])
+# for message in st.session_state.messages: # Display the prior chat messages
+#     with st.chat_message(message["role"]):
+#         st.write(message["content"])
         
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("جارٍ التفكير..."):
-            response = st.session_state.chat_engine.chat(prompt)
-            st.write(response.response)
-            message = {"role": "assistant", "content": response.response}
-            st.session_state.messages.append(message) # Add response to message history        
+# if st.session_state.messages[-1]["role"] != "assistant":
+#     with st.chat_message("assistant"):
+#         with st.spinner("جارٍ التفكير..."):
+#             response = st.session_state.chat_engine.chat(prompt)
+#             st.write(response.response)
+#             message = {"role": "assistant", "content": response.response}
+#             st.session_state.messages.append(message) # Add response to message history        
+
+
+
+
 # query = st.text_input("What would you like to know about your PDF?")
     
 # if query:
