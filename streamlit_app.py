@@ -9,15 +9,7 @@ from llama_index.core  import (
     StorageContext,
     load_index_from_storage,
 )
-import asyncio
-import sys
 
-if sys.platform.startswith('win'):
-    # Only necessary for Windows
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-
-# Then, before your Streamlit app tries to get the event loop:
-asyncio.set_event_loop(asyncio.new_event_loop())
 path = "data"
 
 # Side bar contents
